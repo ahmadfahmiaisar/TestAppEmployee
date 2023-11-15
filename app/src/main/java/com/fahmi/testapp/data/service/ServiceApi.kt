@@ -1,5 +1,6 @@
 package com.fahmi.testapp.data.service
 
+import com.fahmi.testapp.data.dto.DefaultDTO
 import com.fahmi.testapp.data.dto.EmployeeDTO
 import com.fahmi.testapp.data.dto.EmployeeRequestDTO
 import com.fahmi.testapp.domain.model.EmployeeRequest
@@ -15,14 +16,14 @@ interface ServiceApi {
     suspend fun getEmployees(): Response<EmployeeDTO>
 
     @POST("create")
-    suspend fun createEmployee(@Body request: EmployeeRequestDTO): Response<String>
+    suspend fun createEmployee(@Body request: EmployeeRequestDTO): Response<DefaultDTO>
 
     @PUT("update/{employeeId}")
     suspend fun updateEmployee(
         @Path("employeeId") employeeId: String,
         @Body update: EmployeeRequestDTO
-    ): Response<String>
+    ): Response<DefaultDTO>
 
     @PUT("delete/{employeeId}")
-    suspend fun deleteEmployee(@Path("employeeId") employeeId: String): Response<String>
+    suspend fun deleteEmployee(@Path("employeeId") employeeId: String): Response<DefaultDTO>
 }

@@ -16,7 +16,6 @@ import com.fahmi.testapp.domain.model.EmployeeRequest
 import com.fahmi.testapp.domain.model.EmployeeUIModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class EmployeeActivity : BaseActivity<ActivityEmployeeBinding, EmployeeViewModel>() {
     override val getViewBinding: (LayoutInflater) -> ActivityEmployeeBinding
@@ -58,7 +57,6 @@ class EmployeeActivity : BaseActivity<ActivityEmployeeBinding, EmployeeViewModel
         val dialog = Dialog(this)
         dialog.setTitle(title)
         dialog.setContentView(R.layout.view_dialog)
-        dialog.setCanceledOnTouchOutside(false)
         val width = resources.displayMetrics.widthPixels
         dialog.window?.setLayout(6 * width / 7, LinearLayout.LayoutParams.WRAP_CONTENT)
 
@@ -83,6 +81,7 @@ class EmployeeActivity : BaseActivity<ActivityEmployeeBinding, EmployeeViewModel
             } else {
                 viewModel.updateEmployee(itemEmployee.id, request)
             }
+            dialog.dismiss()
         }
 
         dialog.show()

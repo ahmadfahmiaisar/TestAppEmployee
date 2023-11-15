@@ -24,7 +24,7 @@ class RepositoryImpl @Inject constructor(
     override suspend fun createEmployee(request: EmployeeRequest): Either<Exception, String> {
         return when (val result = remoteDataSource.createEmployee(requestMapper.map(request))) {
             is Either.Failure -> Either.Failure(result.cause)
-            is Either.Success -> Either.Success(result.data)
+            is Either.Success -> Either.Success("${result.data.status} ${result.data.message}")
         }
     }
 
@@ -35,14 +35,14 @@ class RepositoryImpl @Inject constructor(
         return when (val result =
             remoteDataSource.updateEmployee(employeeId, requestMapper.map(update))) {
             is Either.Failure -> Either.Failure(result.cause)
-            is Either.Success -> Either.Success(result.data)
+            is Either.Success -> Either.Success("${result.data.status} ${result.data.message}")
         }
     }
 
     override suspend fun deleteEmployee(employeeId: String): Either<Exception, String> {
         return when (val result = remoteDataSource.deleteEmployee(employeeId)) {
             is Either.Failure -> Either.Failure(result.cause)
-            is Either.Success -> Either.Success(result.data)
+            is Either.Success -> Either.Success("${result.data.status} ${result.data.message}")
         }
     }
 }

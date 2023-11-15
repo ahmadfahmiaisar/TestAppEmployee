@@ -33,7 +33,7 @@ class NetworkModule {
         networkInterceptor: NetworkInterceptor
     ): OkHttpClient {
         val client = OkHttpClient.Builder()
-        client.addInterceptor(networkInterceptor)
+//        client.addInterceptor(networkInterceptor)
         client.addInterceptor(loggingInterceptor)
         return client.build()
     }
